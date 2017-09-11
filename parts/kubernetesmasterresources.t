@@ -1,6 +1,6 @@
 {{if .MasterProfile.IsManagedDisks}} 
     {
-      "apiVersion": "[variables('apiVersionStorageManagedDisks')]",
+      "apiVersion": "[variables('apiVersionDefault')]",
       "location": "[variables('location')]",
       "name": "[variables('masterAvailabilitySet')]",
       "properties":
@@ -120,6 +120,36 @@
               "sourceAddressPrefix": "*",
               "sourcePortRange": "*"
             }
+          },
+          {
+              "name": "AllowAllInbound",
+              "properties": {
+                  "access": "Allow",
+                  "provisioningState": "Succeeded",
+                  "description": "Allow All Inbound",
+                  "destinationAddressPrefix": "*",
+                  "destinationPortRange": "*",
+                  "direction": "Inbound",
+                  "priority": 200,
+                  "protocol": "*",
+                  "sourceAddressPrefix": "*",
+                  "sourcePortRange": "*"
+              }
+          },
+          {
+              "name": "AllowAllOutbound",
+              "properties": {
+                  "access": "Allow",
+                  "provisioningState": "Succeeded",
+                  "description": "Allow All Outbound",
+                  "destinationAddressPrefix": "*",
+                  "destinationPortRange": "*",
+                  "direction": "Outbound",
+                  "priority": 200,
+                  "protocol": "*",
+                  "sourceAddressPrefix": "*",
+                  "sourcePortRange": "*"
+              }
           }
         ]
       },
@@ -127,14 +157,14 @@
     },
 {{if not IsVNETIntegrated}}
     {
-      "apiVersion": "[variables('apiVersionDefault')]",
+      "apiVersion": "[variables('apiVersionNetworking')]",
       "location": "[variables('location')]",
       "name": "[variables('routeTableName')]",
       "type": "Microsoft.Network/routeTables"
     },
 {{end}}
     {
-      "apiVersion": "[variables('apiVersionDefault')]",
+      "apiVersion": "[variables('apiVersionNetworking')]",
       "dependsOn": [
         "[concat('Microsoft.Network/publicIPAddresses/', variables('masterPublicIPAddressName'))]"
       ],
@@ -256,7 +286,7 @@
     },
 {{end}}
     {
-      "apiVersion": "[variables('apiVersionDefault')]",
+      "apiVersion": "[variables('apiVersionNetworking')]",
       "location": "[variables('location')]",
       "name": "[variables('masterPublicIPAddressName')]",
       "properties": {
@@ -268,7 +298,7 @@
       "type": "Microsoft.Network/publicIPAddresses"
     },
     {
-      "apiVersion": "[variables('apiVersionDefault')]",
+      "apiVersion": "[variables('apiVersionNetworking')]",
       "copy": {
         "count": "[sub(variables('masterCount'), variables('masterOffset'))]",
         "name": "masterLbLoopNode"
@@ -411,10 +441,11 @@
         },
         "osProfile": {
           "adminUsername": "[variables('username')]",
+          "adminPassword": "!!123abc!!123abc",
           "computername": "[concat(variables('masterVMNamePrefix'), copyIndex(variables('masterOffset')))]",
           {{GetKubernetesMasterCustomData .}}
           "linuxConfiguration": {
-            "disablePasswordAuthentication": "true",
+            "disablePasswordAuthentication": "false",
             "ssh": {
               "publicKeys": [
                 {
@@ -523,9 +554,9 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(variables('masterVMNamePrefix'), copyIndex(variables('masterOffset')),'/cse', copyIndex(variables('masterOffset')))]",
       "properties": {
-        "publisher": "Microsoft.Azure.Extensions",
-        "type": "CustomScript",
-        "typeHandlerVersion": "2.0",
+        "publisher": "Microsoft.OSTCExtensions",
+        "type": "CustomScriptForLinux",
+        "typeHandlerVersion": "1.5",
         "autoUpgradeMinorVersion": true,
         "settings": {},
         "protectedSettings": {

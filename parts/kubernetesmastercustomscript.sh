@@ -56,6 +56,8 @@ ensureRunCommandCompleted()
         fi
         sleep 1
     done
+    update-ca-certificates
+
 }
 ensureRunCommandCompleted
 
@@ -106,7 +108,7 @@ chmod 0600 "${AZURE_JSON_PATH}"
 chown root:root "${AZURE_JSON_PATH}"
 cat << EOF > "${AZURE_JSON_PATH}"
 {
-    "cloud":"${TARGET_ENVIRONMENT}",
+    "cloud": "AzurestackCloud",
     "tenantId": "${TENANT_ID}",
     "subscriptionId": "${SUBSCRIPTION_ID}",
     "aadClientId": "${SERVICE_PRINCIPAL_CLIENT_ID}",
@@ -336,7 +338,7 @@ function ensureApiserver() {
 }
 
 function ensureEtcd() {
-    for i in {1..600}; do
+    for i in {1..60}; do
         curl --max-time 60 http://127.0.0.1:2379/v2/machines;
         if [ $? -eq 0 ]
         then
@@ -380,7 +382,7 @@ function writeKubeConfig() {
     chmod 700 $KUBECONFIGDIR
     chmod 600 $KUBECONFIGFILE
 
-    FQDNSuffix="cloudapp.azure.com"
+    FQDNSuffix="cloudapp.azurestack.external"
     if [ "$TARGET_ENVIRONMENT" = "AzureChinaCloud" ]
     then
         FQDNSuffix="cloudapp.chinacloudapi.cn"

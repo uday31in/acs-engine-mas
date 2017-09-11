@@ -1,0 +1,41 @@
+{
+  "apiVersion": "vlabs",
+  "properties": {
+    "orchestratorProfile": {
+      "orchestratorType": "Kubernetes",
+      "orchestratorRelease": "1.7",
+	  "kubernetesConfig": {
+        "CustomHyperkubeImage": "uday31in/kubecosmo:latest"
+      }
+    },
+    "masterProfile": {
+      "count": 1,
+      "dnsPrefix": "udayk8s4341",
+      "vmSize": "Standard_D2_v2",
+	  "StorageProfile" : "StorageAccount"
+    },
+    "agentPoolProfiles": [
+      {
+        "name": "agentpool1",
+        "count": 2,
+        "vmSize": "Standard_D2_v2",
+        "availabilityProfile": "AvailabilitySet",
+		"StorageProfile" : "StorageAccount"
+      }
+    ],
+    "linuxProfile": {
+      "adminUsername": "uday",
+      "ssh": {
+        "publicKeys": [
+          {
+            "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAtzAh3fsyqQrQeObJl9K6G+Hx7tnVTG1eMMHxfQyt6+Cua30S0g3TWKNT2urlAvB4G+eWUvu6GQx22iVFDd45LG9qMdVAMs0DV1eMTaNs7bSG7cdAlgRPhZqlnoD5XSQVifkfjV9kLhEyKzbkxr1iaiTDyqhHskXURJ6RTCiMhH5rq1SRNLmHdJ9i2jNFTH7CxtvoG2962N+NRo7a32V9hxn3lOmQVBnVivQkseME87km6uOneRwgi3NBUafT1FwXgRKaoDPvXxYROGfn1hSGjQFLUnaw7d/96R/K2uq8O83AanQJ1sucTfv8Tjxw+N+IHrwHiiiLMylQy7ot855iqQ=="
+          }
+        ]
+      }
+    },
+    "servicePrincipalProfile": {
+      "clientId": "10841800-8191-4a19-b745-8136576d6aa0",
+      "secret": "0d691b55-d622-4767-aa61-ebe6a87dfa44"
+    }
+  }
+}

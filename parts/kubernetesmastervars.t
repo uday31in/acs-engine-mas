@@ -58,7 +58,8 @@
   {{end}}
     "masterOffset": "[parameters('masterOffset')]",
 {{end}}
-    "apiVersionDefault": "2016-03-30",
+    "apiVersionDefault": "2015-06-15",
+	"apiVersionNetworking" : "2015-05-01-preview",
     "locations": [
          "[resourceGroup().location]",
          "[parameters('location')]"
@@ -70,7 +71,7 @@
     "osImageOffer": "UbuntuServer",
     "osImagePublisher": "Canonical",
     "osImageSKU": "16.04-LTS",
-    "osImageVersion": "16.04.201706191",
+    "osImageVersion": "latest",
     "resourceGroup": "[resourceGroup().name]",
 {{if not IsHostedMaster}}
     "routeTableName": "[concat(variables('masterVMNamePrefix'),'routetable')]",

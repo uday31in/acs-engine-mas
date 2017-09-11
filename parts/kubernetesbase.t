@@ -49,7 +49,7 @@
       ,{{template "kubernetesmasterresources.t" .}}
     {{else}}
     ,{
-      "apiVersion": "[variables('apiVersionDefault')]",
+      "apiVersion": "[variables('apiVersionNetworking')]",
       "dependsOn": [
         "[concat('Microsoft.Network/networkSecurityGroups/', variables('nsgName'))]"
     {{if not IsVNETIntegrated}}
@@ -87,14 +87,14 @@
     },
     {{if not IsVNETIntegrated}}
     {
-      "apiVersion": "[variables('apiVersionDefault')]",
+      "apiVersion": "[variables('apiVersionNetworking')]",
       "location": "[variables('location')]",
       "name": "[variables('routeTableName')]",
       "type": "Microsoft.Network/routeTables"
     },
     {{end}}
     {
-      "apiVersion": "[variables('apiVersionDefault')]",
+      "apiVersion": "[variables('apiVersionNetworking')]",
       "location": "[variables('location')]",
       "name": "[variables('nsgName')]",
       "properties": {
