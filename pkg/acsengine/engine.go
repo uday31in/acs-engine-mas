@@ -406,6 +406,27 @@ func getParameters(cs *api.ContainerService, isClassicMode bool) (paramsMap, err
 			addValue(parametersMap, "masterCount", properties.MasterProfile.Count)
 		}
 	}
+
+	if properties.CloudProfile != nil {
+		addValue(parametersMap, "cloudprofileName", properties.CloudProfile.Name)
+		addValue(parametersMap, "cloudprofileManagementPortalURL", properties.CloudProfile.ManagementPortalURL)
+		addValue(parametersMap, "cloudprofilePublishSettingsURL", properties.CloudProfile.PublishSettingsURL)
+		addValue(parametersMap, "cloudprofileServiceManagementEndpoint", properties.CloudProfile.ServiceManagementEndpoint)
+		addValue(parametersMap, "cloudprofileResourceManagerEndpoint", properties.CloudProfile.ResourceManagerEndpoint)
+		addValue(parametersMap, "cloudprofileActiveDirectoryEndpoint", properties.CloudProfile.ActiveDirectoryEndpoint)
+		addValue(parametersMap, "cloudprofileGalleryEndpoint", properties.CloudProfile.GalleryEndpoint)
+		addValue(parametersMap, "cloudprofileKeyVaultEndpoint", properties.CloudProfile.KeyVaultEndpoint)
+		addValue(parametersMap, "cloudprofileGraphEndpoint", properties.CloudProfile.GraphEndpoint)
+		addValue(parametersMap, "cloudprofileStorageEndpointSuffix", properties.CloudProfile.StorageEndpointSuffix)
+		addValue(parametersMap, "cloudprofileSQLDatabaseDNSSuffix", properties.CloudProfile.SQLDatabaseDNSSuffix)
+		addValue(parametersMap, "cloudprofileTrafficManagerDNSSuffix", properties.CloudProfile.TrafficManagerDNSSuffix)
+		addValue(parametersMap, "cloudprofileKeyVaultDNSSuffix", properties.CloudProfile.KeyVaultDNSSuffix)
+		addValue(parametersMap, "cloudprofileServiceBusEndpointSuffix", properties.CloudProfile.ServiceBusEndpointSuffix)
+		addValue(parametersMap, "cloudprofileServiceManagementVMDNSSuffix", properties.CloudProfile.ServiceManagementVMDNSSuffix)
+		addValue(parametersMap, "cloudprofileResourceManagerVMDNSSuffix", properties.CloudProfile.ResourceManagerVMDNSSuffix)
+		addValue(parametersMap, "cloudprofileContainerRegistryDNSSuffix", properties.CloudProfile.ContainerRegistryDNSSuffix)
+		addValue(parametersMap, "cloudprofileResourceManagerSelfSignedCertificate", properties.CloudProfile.ResourceManagerSelfSignedCertificate)
+	}
 	addValue(parametersMap, "sshRSAPublicKey", properties.LinuxProfile.SSH.PublicKeys[0].KeyData)
 	for i, s := range properties.LinuxProfile.Secrets {
 		addValue(parametersMap, fmt.Sprintf("linuxKeyVaultID%d", i), s.SourceVault.ID)
@@ -585,6 +606,9 @@ func getStorageAccountType(sizeName string) (string, error) {
 // getTemplateFuncMap returns all functions used in template generation
 func (t *TemplateGenerator) getTemplateFuncMap(cs *api.ContainerService) template.FuncMap {
 	return template.FuncMap{
+		"IsAzureStackCloud": func() bool {
+			return cs.Properties.CloudProfile.Name == "AzurestackCloud"
+		},
 		"IsHostedMaster": func() bool {
 			return cs.Properties.HostedMasterProfile != nil
 		},

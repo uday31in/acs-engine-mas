@@ -38,6 +38,7 @@ type Properties struct {
 	WindowsProfile          *WindowsProfile          `json:"windowsProfile,omitempty"`
 	ServicePrincipalProfile *ServicePrincipalProfile `json:"servicePrincipalProfile,omitempty"`
 	CertificateProfile      *CertificateProfile      `json:"certificateProfile,omitempty"`
+	CloudProfile            *CloudProfile            `json:"cloudProfile,omitempty"`
 }
 
 // ServicePrincipalProfile contains the client and secret used by the cluster for Azure Resource CRUD
@@ -218,6 +219,28 @@ type MasterProfile struct {
 	FQDN string `json:"fqdn,omitempty"`
 }
 
+// Cloud Profile Represents Azure Enviornment
+type CloudProfile struct {
+	Name                                 string `json:"name,omitempty"`
+	ManagementPortalURL                  string `json:"managementPortalURL,omitempty"`
+	PublishSettingsURL                   string `json:"publishSettingsURL,omitempty"`
+	ServiceManagementEndpoint            string `json:"serviceManagementEndpoint,omitempty"`
+	ResourceManagerEndpoint              string `json:"resourceManagerEndpoint,omitempty"`
+	ActiveDirectoryEndpoint              string `json:"activeDirectoryEndpoint,omitempty"`
+	GalleryEndpoint                      string `json:"galleryEndpoint,omitempty"`
+	KeyVaultEndpoint                     string `json:"keyVaultEndpoint,omitempty"`
+	GraphEndpoint                        string `json:"graphEndpoint,omitempty"`
+	StorageEndpointSuffix                string `json:"storageEndpointSuffix,omitempty"`
+	SQLDatabaseDNSSuffix                 string `json:"sqlDatabaseDNSSuffix,omitempty"`
+	TrafficManagerDNSSuffix              string `json:"trafficManagerDNSSuffix,omitempty"`
+	KeyVaultDNSSuffix                    string `json:"keyVaultDNSSuffix,omitempty"`
+	ServiceBusEndpointSuffix             string `json:"serviceBusEndpointSuffix,omitempty"`
+	ServiceManagementVMDNSSuffix         string `json:"serviceManagementVMDNSSuffix,omitempty"`
+	ResourceManagerVMDNSSuffix           string `json:"resourceManagerVMDNSSuffix,omitempty"`
+	ContainerRegistryDNSSuffix           string `json:"containerRegistryDNSSuffix,omitempty"`
+	ResourceManagerSelfSignedCertificate string `json:"resourceManagerSelfSignedCertificate,omitempty"`
+}
+
 // ClassicAgentPoolProfileType represents types of classic profiles
 type ClassicAgentPoolProfileType string
 
@@ -275,6 +298,15 @@ func (p *Properties) HasWindows() bool {
 		if agentPoolProfile.OSType == Windows {
 			return true
 		}
+	}
+	return false
+}
+
+// IsAzureStackCloud returns true if the cloudProfile.name is set to AzurestackCloud
+func (c *CloudProfile) IsAzureStackCloud() bool {
+
+	if c.Name == "AzurestackCloud" {
+		return true
 	}
 	return false
 }

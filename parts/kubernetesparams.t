@@ -284,4 +284,133 @@
       },
       "type": "int"
     }
+{{ if  IsAzureStackCloud }}
+    ,"cloudprofileName": {
+      {{PopulateClassicModeDefaultValue "cloudprofileName"}}
+      "metadata": {
+        "description": "cloudprofileName"
+      },
+      "type": "string"
+    },
+    "cloudprofileManagementPortalURL": {
+      {{PopulateClassicModeDefaultValue "cloudprofileManagementPortalURL"}}
+      "metadata": {
+        "description": "cloudprofileManagementPortalURL"
+      },
+      "type": "string"
+    },
+    "cloudprofilePublishSettingsURL": {
+      {{PopulateClassicModeDefaultValue "cloudprofilePublishSettingsURL"}}
+      "metadata": {
+        "description": "cloudprofilePublishSettingsURL"
+      },
+      "type": "string"
+    },
+    "cloudprofileServiceManagementEndpoint": {
+      {{PopulateClassicModeDefaultValue "cloudprofileServiceManagementEndpoint"}}
+      "metadata": {
+        "description": "cloudprofileServiceManagementEndpoint"
+      },
+      "type": "string"
+    },
+    "cloudprofileResourceManagerEndpoint": {
+      {{PopulateClassicModeDefaultValue "cloudprofileResourceManagerEndpoint"}}
+      "metadata": {
+        "description": "cloudprofileResourceManagerEndpoint"
+      },
+      "type": "string"
+    },
+    "cloudprofileActiveDirectoryEndpoint": {
+      {{PopulateClassicModeDefaultValue "cloudprofileActiveDirectoryEndpoint"}}
+      "metadata": {
+        "description": "cloudprofileActiveDirectoryEndpoint"
+      },
+      "type": "string"
+    },
+    "cloudprofileGalleryEndpoint": {
+      {{PopulateClassicModeDefaultValue "cloudprofileGalleryEndpoint"}}
+      "metadata": {
+        "description": "cloudprofileGalleryEndpoint"
+      },
+      "type": "string"
+    },
+    "cloudprofileKeyVaultEndpoint": {
+      {{PopulateClassicModeDefaultValue "cloudprofileKeyVaultEndpoint"}}
+      "metadata": {
+        "description": "cloudprofileKeyVaultEndpoint"
+      },
+      "type": "string"
+    },
+    "cloudprofileGraphEndpoint": {
+      {{PopulateClassicModeDefaultValue "cloudprofileGraphEndpoint"}}
+      "metadata": {
+        "description": "cloudprofileGraphEndpoint"
+      },
+      "type": "string"
+    },
+    "cloudprofileStorageEndpointSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileStorageEndpointSuffix"}}
+      "metadata": {
+        "description": "cloudprofileStorageEndpointSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileSQLDatabaseDNSSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileSQLDatabaseDNSSuffix"}}
+      "metadata": {
+        "description": "cloudprofileSQLDatabaseDNSSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileTrafficManagerDNSSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileTrafficManagerDNSSuffix"}}
+      "metadata": {
+        "description": "cloudprofileTrafficManagerDNSSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileKeyVaultDNSSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileKeyVaultDNSSuffix"}}
+      "metadata": {
+        "description": "cloudprofileKeyVaultDNSSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileServiceBusEndpointSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileServiceBusEndpointSuffix"}}
+      "metadata": {
+        "description": "cloudprofileServiceBusEndpointSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileServiceManagementVMDNSSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileServiceManagementVMDNSSuffix"}}
+      "metadata": {
+        "description": "cloudprofileServiceManagementVMDNSSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileResourceManagerVMDNSSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileResourceManagerVMDNSSuffix"}}
+      "metadata": {
+        "description": "cloudprofileResourceManagerVMDNSSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileContainerRegistryDNSSuffix": {
+      {{PopulateClassicModeDefaultValue "cloudprofileContainerRegistryDNSSuffix"}}
+      "metadata": {
+        "description": "cloudprofileContainerRegistryDNSSuffix"
+      },
+      "type": "string"
+    },
+    "cloudprofileResourceManagerSelfSignedCertificate": {
+      {{PopulateClassicModeDefaultValue "cloudprofileResourceManagerSelfSignedCertificate"}}
+      "metadata": {
+        "description": "cloudprofileResourceManagerSelfSignedCertificate"
+      },
+      "type": "string"
+    }
+{{ end }}
+
 

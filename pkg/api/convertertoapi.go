@@ -356,6 +356,10 @@ func convertVLabsProperties(vlabs *vlabs.Properties, api *Properties) {
 		api.OrchestratorProfile = &OrchestratorProfile{}
 		convertVLabsOrchestratorProfile(vlabs.OrchestratorProfile, api.OrchestratorProfile)
 	}
+	if vlabs.CloudProfile != nil {
+		api.CloudProfile = &CloudProfile{}
+		convertVLabsCloudProfile(vlabs.CloudProfile, api.CloudProfile)
+	}
 	if vlabs.MasterProfile != nil {
 		api.MasterProfile = &MasterProfile{}
 		convertVLabsMasterProfile(vlabs.MasterProfile, api.MasterProfile)
@@ -530,6 +534,28 @@ func convertV20170701OrchestratorProfile(v20170701cs *v20170701.OrchestratorProf
 	default:
 		break
 	}
+}
+
+func convertVLabsCloudProfile(vlabscs *vlabs.CloudProfile, api *CloudProfile) {
+	api.Name = vlabscs.Name
+	api.ManagementPortalURL = vlabscs.ManagementPortalURL
+	api.PublishSettingsURL = vlabscs.PublishSettingsURL
+	api.ServiceManagementEndpoint = vlabscs.ServiceManagementEndpoint
+	api.ResourceManagerEndpoint = vlabscs.ResourceManagerEndpoint
+	api.ActiveDirectoryEndpoint = vlabscs.ActiveDirectoryEndpoint
+	api.GalleryEndpoint = vlabscs.GalleryEndpoint
+	api.KeyVaultEndpoint = vlabscs.KeyVaultEndpoint
+	api.GraphEndpoint = vlabscs.GraphEndpoint
+	api.StorageEndpointSuffix = vlabscs.StorageEndpointSuffix
+	api.SQLDatabaseDNSSuffix = vlabscs.SQLDatabaseDNSSuffix
+	api.TrafficManagerDNSSuffix = vlabscs.TrafficManagerDNSSuffix
+	api.KeyVaultDNSSuffix = vlabscs.KeyVaultDNSSuffix
+	api.ServiceBusEndpointSuffix = vlabscs.ServiceBusEndpointSuffix
+	api.ServiceManagementVMDNSSuffix = vlabscs.ServiceManagementVMDNSSuffix
+	api.ResourceManagerVMDNSSuffix = vlabscs.ResourceManagerVMDNSSuffix
+	api.ContainerRegistryDNSSuffix = vlabscs.ContainerRegistryDNSSuffix
+	api.ResourceManagerSelfSignedCertificate = vlabscs.ResourceManagerSelfSignedCertificate
+
 }
 
 func convertVLabsOrchestratorProfile(vlabscs *vlabs.OrchestratorProfile, api *OrchestratorProfile) {

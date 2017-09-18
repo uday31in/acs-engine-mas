@@ -256,3 +256,23 @@
     "singleQuote": "'",
     "windowsCustomScriptSuffix": " $inputFile = '%SYSTEMDRIVE%\\AzureData\\CustomData.bin' ; $outputFile = '%SYSTEMDRIVE%\\AzureData\\CustomDataSetupScript.ps1' ; Copy-Item $inputFile $outputFile ; Invoke-Expression('{0} {1}' -f $outputFile, $arguments) ; "
 {{end}}
+{{if IsAzureStackCloud}}
+   ,"cloudprofileName": "[parameters('cloudprofileName')]",
+    "cloudprofileManagementPortalURL": "[parameters('cloudprofileManagementPortalURL')]",
+    "cloudprofilePublishSettingsURL": "[parameters('cloudprofilePublishSettingsURL')]",
+    "cloudprofileServiceManagementEndpoint": "[parameters('cloudprofileServiceManagementEndpoint')]",
+    "cloudprofileResourceManagerEndpoint": "[parameters('cloudprofileResourceManagerEndpoint')]",
+    "cloudprofileActiveDirectoryEndpoint": "[parameters('cloudprofileActiveDirectoryEndpoint')]",
+    "cloudprofileGalleryEndpoint": "[parameters('cloudprofileGalleryEndpoint')]",
+    "cloudprofileKeyVaultEndpoint": "[parameters('cloudprofileKeyVaultEndpoint')]",
+    "cloudprofileGraphEndpoint": "[parameters('cloudprofileGraphEndpoint')]",
+    "cloudprofileStorageEndpointSuffix": "[parameters('cloudprofileStorageEndpointSuffix')]",
+    "cloudprofileSQLDatabaseDNSSuffix": "[parameters('cloudprofileSQLDatabaseDNSSuffix')]",
+    "cloudprofileTrafficManagerDNSSuffix": "[parameters('cloudprofileTrafficManagerDNSSuffix')]",
+    "cloudprofileKeyVaultDNSSuffix": "[parameters('cloudprofileKeyVaultDNSSuffix')]",
+    "cloudprofileServiceBusEndpointSuffix": "[parameters('cloudprofileServiceBusEndpointSuffix')]",
+    "cloudprofileServiceManagementVMDNSSuffix": "[parameters('cloudprofileServiceManagementVMDNSSuffix')]",
+    "cloudprofileResourceManagerVMDNSSuffix": "[parameters('cloudprofileResourceManagerVMDNSSuffix')]",
+    "cloudprofileContainerRegistryDNSSuffix": "[parameters('cloudprofileContainerRegistryDNSSuffix')]",
+    "cloudprofileResourceManagerSelfSignedCertificate": "[parameters('cloudprofileResourceManagerSelfSignedCertificate')]"
+{{end}}

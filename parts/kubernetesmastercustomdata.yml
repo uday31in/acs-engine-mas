@@ -10,24 +10,24 @@ write_files:
   permissions: "0644"
   owner: "root"
   content: |
-    {
-        "name": "AzurestackCloud",
-        "managementPortalURL": "https://manage.windowsazure.com/",
-        "publishSettingsURL": "https://manage.windowsazure.com/publishsettings/index",
-        "serviceManagementEndpoint": "https://management.uday365.com/46d1ebf1-e789-44f9-bfea-b0353fe066d3",
-        "resourceManagerEndpoint": "https://management.local.azurestack.external",
-        "activeDirectoryEndpoint": "https://login.windows.net/",
-        "galleryEndpoint": "https://adminportal.local.azurestack.external:30015/",
-        "keyVaultEndpoint": "https://vault.azure.net/",
-        "graphEndpoint": "https://graph.windows.net/",
-        "storageEndpointSuffix": "local.azurestack.external",
-        "sqlDatabaseDNSSuffix": "database.windows.net",
-        "trafficManagerDNSSuffix": "trafficmanager.net",
-        "keyVaultDNSSuffix": "vault.local.azurestack.external",
-        "serviceBusEndpointSuffix": "servicebus.azure.com",
-        "serviceManagementVMDNSSuffix": "cloudapp.net",
-        "resourceManagerVMDNSSuffix": "cloudapp.azure.com",
-        "containerRegistryDNSSuffix": "azurecr.io"
+   {
+      "name": "{{WrapAsVariable "cloudprofileName"}}",
+      "managementPortalURL": "{{WrapAsVariable "cloudprofileManagementPortalURL"}}",
+      "publishSettingsURL": "{{WrapAsVariable "cloudprofilePublishSettingsURL"}}",
+      "serviceManagementEndpoint": "{{WrapAsVariable "cloudprofileServiceManagementEndpoint"}}",
+      "resourceManagerEndpoint": "{{WrapAsVariable "cloudprofileResourceManagerEndpoint"}}",
+      "activeDirectoryEndpoint": "{{WrapAsVariable "cloudprofileActiveDirectoryEndpoint"}}",
+      "galleryEndpoint": "{{WrapAsVariable "cloudprofileGalleryEndpoint"}}",
+      "keyVaultEndpoint": "{{WrapAsVariable "cloudprofileKeyVaultEndpoint"}}",
+      "graphEndpoint": "{{WrapAsVariable "cloudprofileGraphEndpoint"}}",
+      "storageEndpointSuffix": "{{WrapAsVariable "cloudprofileStorageEndpointSuffix"}}",
+      "sQLDatabaseDNSSuffix": "{{WrapAsVariable "cloudprofileSQLDatabaseDNSSuffix"}}",
+      "trafficManagerDNSSuffix": "{{WrapAsVariable "cloudprofileTrafficManagerDNSSuffix"}}",
+      "keyVaultDNSSuffix": "{{WrapAsVariable "cloudprofileKeyVaultDNSSuffix"}}",
+      "serviceBusEndpointSuffix": "{{WrapAsVariable "cloudprofileServiceBusEndpointSuffix"}}",
+      "serviceManagementVMDNSSuffix": "{{WrapAsVariable "cloudprofileServiceManagementVMDNSSuffix"}}",
+      "resourceManagerVMDNSSuffix": "{{WrapAsVariable "cloudprofileResourceManagerVMDNSSuffix"}}",
+      "containerRegistryDNSSuffix": "{{WrapAsVariable "cloudprofileContainerRegistryDNSSuffix"}}"
     }
 
 - path: "/usr/local/share/ca-certificates/azurestack.crt"
@@ -35,7 +35,7 @@ write_files:
   encoding: "base64"
   owner: "root"
   content: |
-    LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlGWkRDQ0EweWdBd0lCQWdJUWYvV1FZT29zZ3J0SmhoNElTVk5VM1RBTkJna3Foa2lHOXcwQkFRc0ZBREFuDQpNU1V3SXdZRFZRUUREQnhCZW5WeVpWTjBZV05yVTJWc1psTnBaMjVsWkZKdmIzUkRaWEowTUI0WERURTNNRGd6DQpNVEUyTkRNd05Wb1hEVEU0TURnek1URTNNRE13TlZvd0p6RWxNQ01HQTFVRUF3d2NRWHAxY21WVGRHRmphMU5sDQpiR1pUYVdkdVpXUlNiMjkwUTJWeWREQ0NBaUl3RFFZSktvWklodmNOQVFFQkJRQURnZ0lQQURDQ0Fnb0NnZ0lCDQpBTVc0cXg4SVJ2R0lKTTFjRlk2OTk0RnEzZTJTVnFWNHdid05XSG5iUlNLWVlFR0g1NjIwbjRHRUxYNCtyKzV2DQpTaktTNzMzZmlnUmM2QktpanZVSk9wUXd4cUwzdGQ4WnQzNXhLOVhCZzBjaG9GQk9obS9OLzl3eGRqQ2UzcGhtDQpaSXVoR1YzUGlFK2czT0YzeFhvaFRuL25YOTVnZDJSbnBpUEhldVBjNzNDZXJKcmF3Umo5ajNzSlRqazR5eit0DQpBZU5JNEpseDQ2VG84cjUwT01uQUVub21sQ0lsdmM5TEFSTHl0dkZCT3pSc01FcE9ONVpVak84S3NRR3JDZmJlDQpaY0tNY0FLSm5pUnI0YU54STlwRDZkYSszUFJEWm5NcExNdXpGMG9UNG04T0RYL21lcjduQmtoSk93QTd4SEMvDQp3RzJoWG9QWE9ONmNHa2pLV2tzcVNBUHFhQURtYmg0ZEVtMEU3Nm0vaHpaNVpSSUMwOFVPbG44cGNGaFhwNmJqDQpTamNnczVVRkhHdUY5MXZKRGdReDYwT1ZkeW1zVmxKQXBrUGNwUVUzNnhIMlJCRU4yQ0NtZ1lZWUZHSFpMbStIDQpVOEw5RmI5WkZaZFp1UDV5ejB3d1Y4aDdYRXg5YXIrRUpZVlpXcHp4S3NNK3FpNTdTMDR6a0duc1BYb0RYTktzDQpqWjVEZ1NFQi85MEt0Qmt3R3hrUmRrSk8rMnhCTW0vb1FkK280bnp2eHlWWjJyZG1UaElJSXU2bFhIdmI2SnhtDQpFdjlwTlJ5RmhLSjNYZkcwZ293L3Jya3hTaXBiYmRHNDdBV2cwM3BGZ1UreGJwajdzYnk2bWs0S0N2VWtLOFhhDQpHTU85dWhHYzFVcGs4M24zdzg2NUVMSmdtcm0xU2IzSlhvSWlGWEdia3JhSkFnTUJBQUdqZ1lzd2dZZ3dEZ1lEDQpWUjBQQVFIL0JBUURBZ0kwTUIwR0ExVWRKUVFXTUJRR0NDc0dBUVVGQndNQ0JnZ3JCZ0VGQlFjREFUQWtCZ05WDQpIUkVFSFRBYmdobHNiMk5oYkM1aGVuVnlaWE4wWVdOckxtVjRkR1Z5Ym1Gc01CSUdBMVVkRXdFQi93UUlNQVlCDQpBZjhDQVFNd0hRWURWUjBPQkJZRUZLWXJuN25Hd0ZTY2ZJSWxTRlBQSHNQK2FRUktNQTBHQ1NxR1NJYjNEUUVCDQpDd1VBQTRJQ0FRQXg4dVYyV3dFVTdjQ3hGQy9IOW9pUTNodE1IcXcrVlVsdFA2Y3pFRHhzYVVuejBWMjk5STZKDQptMHdlbklqSlc3VnpTc1pOSXFiaitSOUQwZ0svMG5LcER2b2Fad3hKN05aRU5hQTdabUJVVFZ2bE9scDN0Q05EDQo0Y1AvQXI1a1JjODdlOHdXS2NFUU9Fa3ZWUVU2bndvdFdld3piaEdVUDFwaXZFblhVVENhZkN6aTY1NFFvSE9oDQo4WWN6LytnTEpMZGdEclNrc1FScTljZ3dDb1N5aENyV01NdVM0cWtBakxJOHNHNlMyTWpMYjF3M0hjRnh5Nkt0DQpqRlRBZzhrQnBOeUovVmtSSzY0MGsyN0FUZWNGYVY1alJzS3kxWThULzIyWG0xc0VtMVJxb3VDMDVoQk9wOXpFDQo2ZlF0Z0dIUndCZHBSNHhRUjI2akEvcnVUQlluVUlMazVWV2ptM0JzWUUvbG5kVmhQVkNmVE9XL0tOVlhHdC9LDQordld2Um5wZjcyQU12dlRpQmxrNzViMmQxZWhvWWNNa0pQK2F3NUhJeC9PcE5Ec2xaVlZ3djcvQ2M5K2Q1UzNXDQpJeFYvbmc0aHVqcEJvdmVWNlpaTlNNbTJwUWFrcE5weTdzcjFuNlpOSFFzWE5rU3ltOWppV3pFVXBBbXhJNUJQDQpKenIvVjFMQXpzUHJqajdYWXVNdXk0SlM3ZDg5YXhsZGFXSUJBaG83Rnd1dVdYaXNjM3hVYUpXSFpQOTEwNmVTDQpKWmliZ2xJbFRzN3pxYWwrZXdNLy9CRWNyREI4dDlMaU55NlZjVU4xRWtVSTRuOTZaVzk2ZUVPUnZMeWlmdkRTDQpWU083Tmx2SGk5SFJ1YXFDaTg4bVNPR2JTbkpCVnorR2orNW5lVktudWNJR1hZZkFweDlFWFE9PQ0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ0K
+    {{WrapAsVariable "cloudprofileResourceManagerSelfSignedCertificate"}}
 
 - path: "/etc/systemd/system/docker.service.d/clear_mount_propagation_flags.conf"
   permissions: "0644"
